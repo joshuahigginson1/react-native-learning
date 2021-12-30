@@ -13,12 +13,15 @@ import { useDimensions } from "@react-native-community/hooks";
 
 // Local Imports
 import colours from "../config/colours.js";
+import CustomButton from "../components/customButton.js";
+import AppText from "../components/appText.js";
 
 function WelcomeScreen() {
     return (
         <ImageBackground
             source={require("../assets/background.jpg")}
             style={handleStyles().backgroundImage}
+            blurRadius={20}
         >
             <View style={handleStyles().logoContainer}>
                 <Image
@@ -26,18 +29,20 @@ function WelcomeScreen() {
                     style={handleStyles().logo}
                     // resizeMode="contain"
                 />
-                <Text>Sell what you don't need!</Text>
+                <AppText fontColour={colours.black}>
+                    Sell what you don't need!
+                </AppText>
             </View>
 
             <SafeAreaView style={handleStyles().buttonsContainer}>
-                <Button
-                    color={handleStyles().buttonLogin.color}
-                    title="Login"
-                />
-                <Button
-                    color={handleStyles().buttonRegister.color}
-                    title="Register"
-                />
+                <CustomButton
+                    buttonColour={colours.primaryColour}
+                    title="LOGIN"
+                ></CustomButton>
+                <CustomButton
+                    buttonColour={colours.secondaryColour}
+                    title="REGISTER"
+                ></CustomButton>
             </SafeAreaView>
         </ImageBackground>
     );
@@ -52,8 +57,8 @@ const handleStyles = () =>
             flex: 1,
         },
         logoContainer: {
-            borderWidth: 5,
-            borderColor: "red",
+            // borderWidth: 5,
+            // borderColor: "red",
             flex: 3,
             alignItems: "center",
             top: "10%",
@@ -62,20 +67,14 @@ const handleStyles = () =>
             height: "30%",
             width: "30%",
             resizeMode: "contain",
+            marginBottom: 10,
         },
-        logoText: {},
         buttonsContainer: {
-            borderWidth: 5,
-            borderColor: "purple",
+            // borderWidth: 5,
+            // borderColor: "purple",
             flex: 1,
             justifyContent: "flex-end",
-            alignContent: "center",
-        },
-        buttonLogin: {
-            color: colours.primaryColour,
-        },
-        buttonRegister: {
-            color: colours.secondaryColour,
+            alignItems: "center",
         },
     });
 

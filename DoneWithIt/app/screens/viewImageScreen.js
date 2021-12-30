@@ -1,7 +1,7 @@
 // Third Party Imports
 import { View, StyleSheet, Image } from "react-native";
 import { useDimensions } from "@react-native-community/hooks";
-
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 // Local Imports
 import colours from "../config/colours.js";
 
@@ -9,8 +9,16 @@ function ViewImageScreen() {
     return (
         <View style={handleStyles().window}>
             <View style={handleStyles().buttonContainer}>
-                <View style={handleStyles().closeButton}></View>
-                <View style={handleStyles().deleteButton}></View>
+                <MaterialCommunityIcons
+                    name="close"
+                    size={80}
+                    style={handleStyles().closeIcon}
+                ></MaterialCommunityIcons>
+                <MaterialCommunityIcons
+                    name="trash-can-outline"
+                    size={80}
+                    style={handleStyles().deleteIcon}
+                ></MaterialCommunityIcons>
             </View>
             <Image
                 source={require("../assets/chair.jpg")}
@@ -34,17 +42,14 @@ const handleStyles = () =>
             borderColor: "purple",
             flexDirection: "row",
             justifyContent: "space-around",
+            alignItems: "center",
             width: "100%",
         },
-        closeButton: {
-            height: 80,
-            width: 80,
-            backgroundColor: colours.primaryColour,
+        closeIcon: {
+            color: colours.primaryColour,
         },
-        deleteButton: {
-            height: 80,
-            width: 80,
-            backgroundColor: colours.secondaryColour,
+        deleteIcon: {
+            color: colours.secondaryColour,
         },
 
         image: {
