@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         height: "40%",
         width: "90%",
+        overflow: "hidden",
         ...Platform.select({
             ios: {
                 shadowColor: colours.grey,
@@ -46,12 +47,12 @@ const styles = StyleSheet.create({
         }),
     },
     image: {
-        // Image does not inherit the border radius of card, so we need to add it again!
         flex: 3,
         width: "100%",
         height: "100%",
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
+        // Image does not inherit the border radius of card, so we need to add it again!
+        // borderTopLeftRadius: 10,
+        // borderTopRightRadius: 10,
     },
     textSection: {
         flex: 1,

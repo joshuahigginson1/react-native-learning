@@ -27,7 +27,6 @@ function WelcomeScreen() {
                 <Image
                     source={require("../assets/logo-red.png")}
                     style={handleStyles().logo}
-                    // resizeMode="contain"
                 />
                 <AppText fontColour={colours.black}>
                     Sell what you don't need!
@@ -65,7 +64,7 @@ const handleStyles = () =>
             height: "30%",
             width: "30%",
             resizeMode: "contain",
-            marginBottom: 10,
+            marginBottom: 20,
         },
         buttonsContainer: {
             flex: 1,

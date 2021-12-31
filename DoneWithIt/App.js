@@ -4,11 +4,13 @@ import { View, StyleSheet, Text, Platform } from "react-native";
 
 // Local Imports
 
-// import ListingDetailsScreen from "./app/screens/listingDetailsScreen.js";
+import ListingDetailsScreen from "./app/screens/listingDetailsScreen.js";
 import WelcomeScreen from "./app/screens/welcomeScreen.js";
+import ViewImageScreen from "./app/screens/viewImageScreen.js";
+import MessagesScreen from "./app/screens/messagesScreen.js";
 
 export default function App() {
-    return <WelcomeScreen></WelcomeScreen>;
+    return <MessagesScreen></MessagesScreen>;
 }
 const styles = StyleSheet.create({
     component: {

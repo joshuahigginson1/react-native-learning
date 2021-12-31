@@ -4,5 +4,6 @@ export default {
     black: "#000000",
     white: "white",
     grey: "grey",
+    danger: "#ff5252",
     greyBackground: "#f8f4f4",
 };

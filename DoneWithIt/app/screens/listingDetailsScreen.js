@@ -85,8 +85,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
 
         // Borders
-        // borderColor: "white",
-        // borderWidth: 5,
+        borderColor: "white",
+        borderWidth: 5,
     },
     sellerImage: {
         height: 50,

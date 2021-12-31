@@ -1,6 +1,5 @@
 // Third Party Imports
 import { View, StyleSheet, Image } from "react-native";
-import { useDimensions } from "@react-native-community/hooks";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 // Local Imports
 import colours from "../config/colours.js";
@@ -37,12 +36,13 @@ const styles = StyleSheet.create({
     },
 
     buttonContainer: {
-        borderWidth: 5,
-        borderColor: "purple",
         flexDirection: "row",
         justifyContent: "space-around",
         alignItems: "center",
         width: "100%",
+        // Borders
+        // borderWidth: 5,
+        // borderColor: "purple",
     },
     closeIcon: {
         color: colours.primaryColour,
