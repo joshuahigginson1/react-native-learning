@@ -1,5 +1,5 @@
 // Third Party Imports
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { useDimensions } from "@react-native-community/hooks";
 
 // Local Imports
@@ -8,13 +8,17 @@ import colours from "../config/colours.js";
 function CustomButton({
     buttonColour = colours.primaryColour,
     title = "DEFAULT BUTTON",
+    onPress,
 }) {
     return (
-        <View style={handleStyles(buttonColour).buttonContainer}>
+        <TouchableOpacity
+            style={handleStyles(buttonColour).buttonContainer}
+            onPress={onPress}
+        >
             <AppText fontColour={colours.white} fontSize={12}>
                 {title}
             </AppText>
-        </View>
+        </TouchableOpacity>
     );
 }
 
