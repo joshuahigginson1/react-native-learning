@@ -15,11 +15,9 @@ function Card({
         image = require("../assets/jacket.jpg");
     }
     return (
-        <View style={handleStyles.card}>
-            <Image style={handleStyles.image} source={image}></Image>
-            {/* <View style={handleStyles.imageSection}>
-                </View> */}
-            <View style={handleStyles.textSection}>
+        <View style={styles.card}>
+            <Image style={styles.image} source={image}></Image>
+            <View style={styles.textSection}>
                 <AppText fontColour={colours.black}>{title}</AppText>
                 <AppText fontColour={colours.grey} fontSize={12}>
                     {subTitle}
@@ -29,13 +27,7 @@ function Card({
     );
 }
 
-const handleStyles = StyleSheet.create({
-    window: {
-        justifyContent: "center",
-        alignItems: "center",
-        flex: 1,
-        backgroundColor: "#f8f4f4",
-    },
+const styles = StyleSheet.create({
     card: {
         backgroundColor: colours.white,
         borderRadius: 10,
@@ -52,10 +44,6 @@ const handleStyles = StyleSheet.create({
                 elevation: 10,
             },
         }),
-    },
-    imageSection: {
-        borderColor: "green",
-        borderWidth: 5,
     },
     image: {
         // Image does not inherit the border radius of card, so we need to add it again!

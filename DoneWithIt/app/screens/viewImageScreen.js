@@ -7,56 +7,55 @@ import colours from "../config/colours.js";
 
 function ViewImageScreen() {
     return (
-        <View style={handleStyles().window}>
-            <View style={handleStyles().buttonContainer}>
+        <View style={styles.window}>
+            <View style={styles.buttonContainer}>
                 <MaterialCommunityIcons
                     name="close"
                     size={80}
-                    style={handleStyles().closeIcon}
+                    style={styles.closeIcon}
                 ></MaterialCommunityIcons>
                 <MaterialCommunityIcons
                     name="trash-can-outline"
                     size={80}
-                    style={handleStyles().deleteIcon}
+                    style={styles.deleteIcon}
                 ></MaterialCommunityIcons>
             </View>
             <Image
                 source={require("../assets/chair.jpg")}
-                style={handleStyles().image}
+                style={styles.image}
             ></Image>
         </View>
     );
 }
 
-const handleStyles = () =>
-    StyleSheet.create({
-        window: {
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: colours.black,
-        },
+const styles = StyleSheet.create({
+    window: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: colours.black,
+    },
 
-        buttonContainer: {
-            borderWidth: 5,
-            borderColor: "purple",
-            flexDirection: "row",
-            justifyContent: "space-around",
-            alignItems: "center",
-            width: "100%",
-        },
-        closeIcon: {
-            color: colours.primaryColour,
-        },
-        deleteIcon: {
-            color: colours.secondaryColour,
-        },
+    buttonContainer: {
+        borderWidth: 5,
+        borderColor: "purple",
+        flexDirection: "row",
+        justifyContent: "space-around",
+        alignItems: "center",
+        width: "100%",
+    },
+    closeIcon: {
+        color: colours.primaryColour,
+    },
+    deleteIcon: {
+        color: colours.secondaryColour,
+    },
 
-        image: {
-            width: useDimensions().window.width,
-            height: "75%",
-            resizeMode: "contain",
-        },
-    });
+    image: {
+        width: "100%",
+        height: "75%",
+        resizeMode: "contain",
+    },
+});
 
 export default ViewImageScreen;

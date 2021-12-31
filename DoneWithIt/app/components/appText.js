@@ -14,7 +14,7 @@ const styles = (fontSize = 18, fontColour = colours.primaryColour) =>
     StyleSheet.create({
         textDefault: {
             color: fontColour,
-            fontWeight: "800",
+            fontWeight: "600",
             ...Platform.select({
                 ios: {
                     fontFamily: "Avenir",
