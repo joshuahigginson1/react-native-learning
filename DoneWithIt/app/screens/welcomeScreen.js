@@ -57,8 +57,6 @@ const handleStyles = () =>
             flex: 1,
         },
         logoContainer: {
-            // borderWidth: 5,
-            // borderColor: "red",
             flex: 3,
             alignItems: "center",
             top: "10%",
@@ -70,8 +68,6 @@ const handleStyles = () =>
             marginBottom: 10,
         },
         buttonsContainer: {
-            // borderWidth: 5,
-            // borderColor: "purple",
             flex: 1,
             justifyContent: "flex-end",
             alignItems: "center",

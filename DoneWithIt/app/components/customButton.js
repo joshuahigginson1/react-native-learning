@@ -5,7 +5,10 @@ import { useDimensions } from "@react-native-community/hooks";
 // Local Imports
 import AppText from "./appText.js";
 import colours from "../config/colours.js";
-function CustomButton({ buttonColour, title }) {
+function CustomButton({
+    buttonColour = colours.primaryColour,
+    title = "DEFAULT BUTTON",
+}) {
     return (
         <View style={handleStyles(buttonColour).buttonContainer}>
             <AppText fontColour={colours.white} fontSize={12}>
