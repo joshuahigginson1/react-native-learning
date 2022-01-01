@@ -8,9 +8,11 @@ import ListingDetailsScreen from "./app/screens/listingDetailsScreen.js";
 import WelcomeScreen from "./app/screens/welcomeScreen.js";
 import ViewImageScreen from "./app/screens/viewImageScreen.js";
 import MessagesScreen from "./app/screens/messagesScreen.js";
+import ListingsScreen from "./app/screens/listingsScreen.js";
+import MyAccount from "./app/screens/myAccount.js";
 
 export default function App() {
-    return <MessagesScreen></MessagesScreen>;
+    return <MyAccount></MyAccount>;
 }
 const styles = StyleSheet.create({
     component: {

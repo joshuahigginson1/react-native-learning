@@ -6,4 +6,5 @@ export default {
     grey: "grey",
     danger: "#ff5252",
     greyBackground: "#f8f4f4",
+    gold: "#ffe66d",
 };

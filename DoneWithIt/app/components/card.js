@@ -31,8 +31,10 @@ const styles = StyleSheet.create({
     card: {
         backgroundColor: colours.white,
         borderRadius: 10,
-        height: "40%",
+        flex: 1,
+        height: 200,
         width: "90%",
+        marginHorizontal: "5%",
         overflow: "hidden",
         ...Platform.select({
             ios: {
