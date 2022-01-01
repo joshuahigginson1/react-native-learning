@@ -4,9 +4,16 @@ import { Platform, Text, StyleSheet } from "react-native";
 // Local Imports
 import colours from "../config/colours.js";
 
-function AppText({ children, fontSize = 18, fontColour = colours.black }) {
+function AppText({
+    children,
+    fontSize = 18,
+    fontColour = colours.black,
+    style,
+}) {
     return (
-        <Text style={styles(fontSize, fontColour).textDefault}>{children}</Text>
+        <Text style={[style, styles(fontSize, fontColour).textDefault]}>
+            {children}
+        </Text>
     );
 }
 
