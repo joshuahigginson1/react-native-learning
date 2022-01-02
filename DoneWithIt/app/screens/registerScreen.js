@@ -19,7 +19,7 @@ const validationSchema = Yup.object().shape({
         .label("Password Confirm"),
 });
 
-function LoginScreen() {
+function RegisterScreen() {
     return (
         <SafeAreaView style={styles.window}>
             <AppFormik
@@ -89,4 +89,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LoginScreen;
+export default RegisterScreen;

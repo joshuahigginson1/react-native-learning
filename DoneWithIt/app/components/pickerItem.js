@@ -1,6 +1,6 @@
 // Third Party Imports
 
-import { TouchableOpacity, View, StyleSheet } from "react-native";
+import { TouchableOpacity, StyleSheet } from "react-native";
 
 // Local Imports
 

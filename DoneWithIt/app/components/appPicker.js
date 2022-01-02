@@ -13,7 +13,6 @@ import React, { useState } from "react";
 
 // Local Imports
 import colours from "../config/colours.js";
-import defaultStyles from "../config/defaultStyles.js";
 import AppText from "./appText.js";
 import PickerItem from "./pickerItem.js";
 
@@ -23,7 +22,6 @@ function AppPicker({
     onSelectItem,
     placeholder,
     selectedItem,
-    ...otherProps
 }) {
     const [modalVisible, setModalVisible] = useState(false);
     return (
@@ -87,7 +85,7 @@ const styles = StyleSheet.create({
     icon: {
         paddingRight: 20,
     },
-    text: { flex: 1 },
+    text: { flex: 1, textTransform: "capitalize" },
 });
 
 export default AppPicker;
