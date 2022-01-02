@@ -7,9 +7,7 @@ import * as Yup from "yup";
 // Local Imports
 
 import defaultStyles from "../config/defaultStyles";
-import AppFormField from "../components/forms/appFormField";
-import AppSubmitButton from "../components/forms/appSubmitButton";
-import AppFormik from "../components/forms/appFormik";
+import { AppFormField, AppSubmitButton, AppFormik } from "../components/forms";
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
