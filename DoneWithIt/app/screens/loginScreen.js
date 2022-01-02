@@ -11,36 +11,40 @@ import AppTextInput from "../components/appTextInput";
 import CustomButton from "../components/customButton";
 
 function LoginScreen() {
-    [email, setEmail] = useState();
-    [password, setPassword] = useState();
     return (
         <SafeAreaView style={styles.window}>
             <Image
                 style={styles.logo}
                 source={require("../assets/logo-red.png")}
             />
-            <AppTextInput
-                placeholder="Email"
-                autoCapitalize="none"
-                autoCorrect={false}
-                keyboardType="email-address"
-                iconName="email"
-                textContentType="emailAddress"
-                onChangeText={(text) => setEmail(text)}
-            />
-            <AppTextInput
-                placeholder="Password"
-                autoCapitalize="none"
-                autoCorrect={false}
-                iconName="lock"
-                textContentType="password"
-                secureTextEntry
-                onChangeText={(text) => setPassword(text)}
-            />
-            <CustomButton
-                title="LOGIN"
-                onPress={() => console.log(email, password)}
-            />
+            <Formik
+                initialValues={{ email: "", password: "" }}
+                onSubmit={(values) => console.log(values)}
+            >
+                {({ handleSubmit, handleChange }) => (
+                    <React.Fragment>
+                        <AppTextInput
+                            placeholder="Email"
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            keyboardType="email-address"
+                            iconName="email"
+                            textContentType="emailAddress"
+                            onChangeText={handleChange("email")}
+                        />
+                        <AppTextInput
+                            placeholder="Password"
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            iconName="lock"
+                            textContentType="password"
+                            secureTextEntry
+                            onChangeText={handleChange("password")}
+                        />
+                        <CustomButton title="LOGIN" onPress={handleSubmit} />
+                    </React.Fragment>
+                )}
+            </Formik>
         </SafeAreaView>
     );
 }
