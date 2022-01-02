@@ -18,6 +18,7 @@ import AppText from "../components/appText";
 import AppTextInput from "../components/appTextInput";
 import CustomButton from "../components/customButton";
 import AppErrorMessage from "../components/appErrorMessage";
+import AppFormField from "../components/appFormField";
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
@@ -44,33 +45,23 @@ function LoginScreen() {
                     setFieldTouched,
                 }) => (
                     <React.Fragment>
-                        <AppTextInput
+                        <AppFormField
                             placeholder="Email"
                             autoCapitalize="none"
                             autoCorrect={false}
                             keyboardType="email-address"
                             iconName="email"
                             textContentType="emailAddress"
-                            onChangeText={handleChange("email")}
-                            onBlur={() => setFieldTouched("email")}
+                            fieldName="email"
                         />
-                        <AppErrorMessage
-                            visible={touched.email}
-                            error={errors.email}
-                        />
-                        <AppTextInput
+                        <AppFormField
                             placeholder="Password"
                             autoCapitalize="none"
                             autoCorrect={false}
                             iconName="lock"
                             textContentType="password"
                             secureTextEntry
-                            onChangeText={handleChange("password")}
-                            onBlur={() => setFieldTouched("password")}
-                        />
-                        <AppErrorMessage
-                            visible={touched.password}
-                            error={errors.password}
+                            fieldName="password"
                         />
 
                         <CustomButton title="LOGIN" onPress={handleSubmit} />
