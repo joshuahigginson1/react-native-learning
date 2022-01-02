@@ -1,14 +1,28 @@
 // Third Party Imports
-import React, { useState } from "react";
-import { SafeAreaView, View, Image, StyleSheet } from "react-native";
+import React from "react";
+import {
+    SafeAreaView,
+    View,
+    Image,
+    StyleSheet,
+    TouchableNativeFeedbackBase,
+} from "react-native";
 import { Formik } from "formik";
+import * as Yup from "yup";
 
 // Local Imports
 
 import defaultStyles from "../config/defaultStyles";
 import colours from "../config/colours";
+import AppText from "../components/appText";
 import AppTextInput from "../components/appTextInput";
 import CustomButton from "../components/customButton";
+import AppErrorMessage from "../components/appErrorMessage";
+
+const validationSchema = Yup.object().shape({
+    email: Yup.string().required().email().label("Email"),
+    password: Yup.string().required().min(8).label("Password"),
+});
 
 function LoginScreen() {
     return (
@@ -20,8 +34,15 @@ function LoginScreen() {
             <Formik
                 initialValues={{ email: "", password: "" }}
                 onSubmit={(values) => console.log(values)}
+                validationSchema={validationSchema}
             >
-                {({ handleSubmit, handleChange }) => (
+                {({
+                    handleSubmit,
+                    handleChange,
+                    errors,
+                    touched,
+                    setFieldTouched,
+                }) => (
                     <React.Fragment>
                         <AppTextInput
                             placeholder="Email"
@@ -31,6 +52,11 @@ function LoginScreen() {
                             iconName="email"
                             textContentType="emailAddress"
                             onChangeText={handleChange("email")}
+                            onBlur={() => setFieldTouched("email")}
+                        />
+                        <AppErrorMessage
+                            visible={touched.email}
+                            error={errors.email}
                         />
                         <AppTextInput
                             placeholder="Password"
@@ -40,7 +66,13 @@ function LoginScreen() {
                             textContentType="password"
                             secureTextEntry
                             onChangeText={handleChange("password")}
+                            onBlur={() => setFieldTouched("password")}
                         />
+                        <AppErrorMessage
+                            visible={touched.password}
+                            error={errors.password}
+                        />
+
                         <CustomButton title="LOGIN" onPress={handleSubmit} />
                     </React.Fragment>
                 )}
