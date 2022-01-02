@@ -15,6 +15,7 @@ import React, { useState } from "react";
 import colours from "../config/colours.js";
 import AppText from "./appText.js";
 import PickerItem from "./pickerItem.js";
+import defaultStyles from "../config/defaultStyles.js";
 
 function AppPicker({
     categories,
@@ -48,17 +49,20 @@ function AppPicker({
                 </View>
             </TouchableWithoutFeedback>
             <Modal visible={modalVisible} animationType="slide">
-                <SafeAreaView>
+                <SafeAreaView style={styles.modalContainer}>
                     <Button
                         onPress={() => setModalVisible(false)}
-                        title="Close Modal"
+                        title="Close"
                     />
                     <FlatList
                         data={categories}
+                        numColumns={3}
                         keyExtractor={(category) => category.id.toString()}
                         renderItem={({ item }) => (
                             <PickerItem
                                 label={item.label}
+                                iconName={item.iconName}
+                                iconColour={item.iconColour}
                                 onPress={() => {
                                     setModalVisible(false);
                                     onSelectItem(item);
@@ -80,12 +84,14 @@ const styles = StyleSheet.create({
         width: "100%",
         padding: 15,
         marginVertical: 10,
+        // alignItems: "center",
+    },
+    icon: { marginRight: 20 },
+    text: { flex: 1, textTransform: "capitalize" },
+    modalContainer: {
+        ...defaultStyles.window,
         alignItems: "center",
     },
-    icon: {
-        paddingRight: 20,
-    },
-    text: { flex: 1, textTransform: "capitalize" },
 });
 
 export default AppPicker;

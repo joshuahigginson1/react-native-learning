@@ -19,7 +19,11 @@ function Card({
             <Image style={styles.image} source={image}></Image>
             <View style={styles.textSection}>
                 <AppText fontColour={colours.black}>{title}</AppText>
-                <AppText fontColour={colours.grey} fontSize={12}>
+                <AppText
+                    numberOfLines={10}
+                    fontColour={colours.grey}
+                    fontSize={12}
+                >
                     {subTitle}
                 </AppText>
             </View>

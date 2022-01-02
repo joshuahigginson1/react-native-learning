@@ -6,9 +6,9 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colours from "../config/colours.js";
 import defaultStyles from "../config/defaultStyles.js";
 
-function AppTextInput({ iconName, ...otherProps }) {
+function AppTextInput({ iconName, width, ...otherProps }) {
     return (
-        <View style={styles.container}>
+        <View style={styles(width).container}>
             {/* Use Conditional Rendering to only render icon if specified. */}
 
             {iconName && (
@@ -16,11 +16,11 @@ function AppTextInput({ iconName, ...otherProps }) {
                     name={iconName}
                     size={20}
                     color={colours.grey}
-                    style={styles.icon}
+                    style={styles(width).icon}
                 />
             )}
             <TextInput
-                style={styles.textInput}
+                style={styles(width).textInput}
                 {...otherProps}
                 placeholderTextColor={colours.grey}
             />
@@ -28,20 +28,21 @@ function AppTextInput({ iconName, ...otherProps }) {
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: colours.greyBackground,
-        borderRadius: 25,
-        flexDirection: "row",
-        width: "100%",
-        padding: 15,
-        marginVertical: 10,
-        alignItems: "center",
-    },
-    icon: {
-        paddingRight: 20,
-    },
-    textInput: defaultStyles.text,
-});
+const styles = (width = "100%") =>
+    StyleSheet.create({
+        container: {
+            backgroundColor: colours.greyBackground,
+            borderRadius: 25,
+            flexDirection: "row",
+            width: width,
+            padding: 15,
+            marginVertical: 10,
+            alignItems: "center",
+        },
+        icon: {
+            paddingRight: 20,
+        },
+        textInput: defaultStyles.text,
+    });
 
 export default AppTextInput;

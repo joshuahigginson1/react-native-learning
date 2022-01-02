@@ -9,9 +9,13 @@ function AppText({
     fontSize = 18,
     fontColour = colours.black,
     style,
+    ...otherProps
 }) {
     return (
-        <Text style={[style, styles(fontSize, fontColour).textDefault]}>
+        <Text
+            {...otherProps}
+            style={[style, styles(fontSize, fontColour).textDefault]}
+        >
             {children}
         </Text>
     );

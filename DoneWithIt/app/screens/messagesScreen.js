@@ -25,7 +25,8 @@ const initialMessages = [
     {
         id: 1,
         title: "T1",
-        description: "D1",
+        description:
+            "This is a really really really really really really really really long description",
         userImage: require("../assets/mosh.jpg"),
     },
     {
@@ -97,10 +98,18 @@ function MessagesScreen() {
                                     <AppText fontColour={colours.black}>
                                         {item.title}
                                     </AppText>
-                                    <AppText fontColour={colours.primaryColour}>
+                                    <AppText
+                                        numberOfLines={2}
+                                        fontColour={colours.primaryColour}
+                                    >
                                         {item.description}
                                     </AppText>
                                 </View>
+                                <MaterialCommunityIcons
+                                    name="chevron-right"
+                                    size={25}
+                                    style={styles.sellerChevron}
+                                />
                             </View>
                         </TouchableHighlight>
                     </Swipeable>
@@ -121,13 +130,10 @@ const styles = StyleSheet.create({
         flex: 2,
 
         alignItems: "center",
+        justifyContent: "flex-start",
 
         // Will be laid out in a row rather than column.
         flexDirection: "row",
-
-        // Borders
-        // borderColor: "white",
-        // borderWidth: 3,
     },
     renderRightActions: {
         backgroundColor: colours.danger,
@@ -144,6 +150,8 @@ const styles = StyleSheet.create({
     },
     sellerTextContainer: {
         marginLeft: 30,
+        width: "60%",
+        marginVertical: 10,
     },
 });
 

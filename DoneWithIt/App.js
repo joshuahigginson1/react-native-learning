@@ -15,7 +15,7 @@ import RegisterScreen from "./app/screens/registerScreen.js";
 import ListEditingScreen from "./app/screens/listEditingScreen.js";
 
 export default function App() {
-    return <ListEditingScreen></ListEditingScreen>;
+    return <MessagesScreen></MessagesScreen>;
 }
 
 const styles = StyleSheet.create({

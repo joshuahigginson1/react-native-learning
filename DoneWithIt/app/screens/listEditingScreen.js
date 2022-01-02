@@ -21,10 +21,23 @@ const validationSchema = Yup.object().shape({
 });
 
 const categories = [
-    { id: 0, label: "Chairs" },
-    { id: 1, label: "Cameras" },
-    { id: 2, label: "Furniture" },
-    { id: 3, label: "Clothes" },
+    {
+        id: 0,
+        label: "Furniture",
+        iconName: "floor-lamp",
+        iconColour: "#fc5c65",
+    },
+    { id: 1, label: "Cars", iconName: "car", iconColour: "#fd9644" },
+    { id: 2, label: "Cameras", iconName: "camera", iconColour: "#fed330" },
+    { id: 3, label: "Games", iconName: "cards", iconColour: "#26de81" },
+    { id: 4, label: "Clothing", iconName: "shoe-heel", iconColour: "#2bcbba" },
+    { id: 5, label: "Sports", iconName: "basketball", iconColour: "#45aaf2" },
+    {
+        id: 6,
+        label: "Movies & Music",
+        iconName: "headphones",
+        iconColour: "#4b7bec",
+    },
 ];
 
 function ListEditingScreen() {
@@ -53,11 +66,12 @@ function ListEditingScreen() {
                     autoCorrect={false}
                     keyboardType="numeric"
                     fieldName="price"
+                    width="50%"
                 />
                 <AppFormPicker
                     fieldName="category"
                     categories={categories}
-                    iconName="account"
+                    iconName="apps"
                 />
                 <AppFormField
                     placeholder="Description"
@@ -76,14 +90,7 @@ const styles = StyleSheet.create({
     window: {
         ...defaultStyles.window,
         marginHorizontal: "5%",
-        alignItems: "center",
-    },
-    logo: {
-        width: 80,
-        height: 80,
-        alignSelf: "center",
-        marginTop: 20,
-        marginBottom: 50,
+        alignItems: "flex-start",
     },
 });
 
