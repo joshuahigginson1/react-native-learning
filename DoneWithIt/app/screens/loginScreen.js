@@ -1,25 +1,15 @@
 // Third Party Imports
 import React from "react";
-import {
-    SafeAreaView,
-    View,
-    Image,
-    StyleSheet,
-    TouchableNativeFeedbackBase,
-} from "react-native";
+import { SafeAreaView, Image, StyleSheet } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
 // Local Imports
 
 import defaultStyles from "../config/defaultStyles";
-import colours from "../config/colours";
-import AppText from "../components/appText";
-import AppTextInput from "../components/appTextInput";
-import CustomButton from "../components/customButton";
-import AppErrorMessage from "../components/appErrorMessage";
-import AppFormField from "../components/appFormField";
-import AppSubmitButton from "../components/appSubmitButton";
+import AppFormField from "../components/forms/appFormField";
+import AppSubmitButton from "../components/forms/appSubmitButton";
+import AppFormik from "../components/forms/appFormik";
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
@@ -33,36 +23,31 @@ function LoginScreen() {
                 style={styles.logo}
                 source={require("../assets/logo-red.png")}
             />
-            <Formik
+            <AppFormik
                 initialValues={{ email: "", password: "" }}
                 onSubmit={(values) => console.log(values)}
                 validationSchema={validationSchema}
             >
-                {() => (
-                    <React.Fragment>
-                        <AppFormField
-                            placeholder="Email"
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            keyboardType="email-address"
-                            iconName="email"
-                            textContentType="emailAddress"
-                            fieldName="email"
-                        />
-                        <AppFormField
-                            placeholder="Password"
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            iconName="lock"
-                            textContentType="password"
-                            secureTextEntry
-                            fieldName="password"
-                        />
-
-                        <AppSubmitButton title="LOGIN" />
-                    </React.Fragment>
-                )}
-            </Formik>
+                <AppFormField
+                    placeholder="Email"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    keyboardType="email-address"
+                    iconName="email"
+                    textContentType="emailAddress"
+                    fieldName="email"
+                />
+                <AppFormField
+                    placeholder="Password"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    iconName="lock"
+                    textContentType="password"
+                    secureTextEntry
+                    fieldName="password"
+                />
+                <AppSubmitButton title="LOGIN" />
+            </AppFormik>
         </SafeAreaView>
     );
 }

@@ -1,10 +1,9 @@
 // Third Party Imports
-import React from "react";
 import { useFormikContext } from "formik";
 
 // Local Imports
-import AppTextInput from "./appTextInput";
-import AppErrorMessage from "./appErrorMessage";
+import AppTextInput from "./appTextInput.js";
+import AppErrorMessage from "./appErrorMessage.js";
 
 function AppFormField({ fieldName, ...otherProps }) {
     const { handleChange, setFieldTouched, touched, errors } =

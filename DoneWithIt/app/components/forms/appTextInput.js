@@ -1,10 +1,10 @@
 // Third Party Imports
-import { View, TextInput, StyleSheet, Platform } from "react-native";
+import { View, TextInput, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // Local Imports
-import colours from "../config/colours.js";
-import defaultStyles from "../config/defaultStyles.js";
+import colours from "../../config/colours.js";
+import defaultStyles from "../../config/defaultStyles.js";
 
 function AppTextInput({ iconName, ...otherProps }) {
     return (
