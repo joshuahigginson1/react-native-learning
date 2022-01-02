@@ -11,9 +11,10 @@ import MessagesScreen from "./app/screens/messagesScreen.js";
 import ListingsScreen from "./app/screens/listingsScreen.js";
 import MyAccount from "./app/screens/myAccount.js";
 import LoginScreen from "./app/screens/loginScreen.js";
+import RegisterScreen from "./app/screens/registerScreen.js";
 
 export default function App() {
-    return <LoginScreen></LoginScreen>;
+    return <RegisterScreen></RegisterScreen>;
 }
 
 const styles = StyleSheet.create({

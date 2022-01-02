@@ -9,22 +9,38 @@ import defaultStyles from "../config/defaultStyles";
 import { AppFormField, AppSubmitButton, AppFormik } from "../components/forms";
 
 const validationSchema = Yup.object().shape({
+    firstName: Yup.string().required().min(2).max(40).label("First Name"),
     email: Yup.string().required().email().label("Email"),
     password: Yup.string().required().min(8).label("Password"),
+    confirmPassword: Yup.string()
+        .required()
+        .min(8)
+        .oneOf([Yup.ref("password")], "Passwords do not match!")
+        .label("Password Confirm"),
 });
 
 function LoginScreen() {
     return (
         <SafeAreaView style={styles.window}>
-            <Image
-                style={styles.logo}
-                source={require("../assets/logo-red.png")}
-            />
             <AppFormik
-                initialValues={{ email: "", password: "" }}
+                initialValues={{
+                    firstName: "",
+                    email: "",
+                    password: "",
+                    confirmPassword: "",
+                }}
                 onSubmit={(values) => console.log(values)}
                 validationSchema={validationSchema}
             >
+                <AppFormField
+                    placeholder="First Name"
+                    autoCapitalize="words"
+                    autoCorrect={false}
+                    keyboardType="default"
+                    iconName="account"
+                    textContentType="name"
+                    fieldName="firstName"
+                />
                 <AppFormField
                     placeholder="Email"
                     autoCapitalize="none"
@@ -38,12 +54,21 @@ function LoginScreen() {
                     placeholder="Password"
                     autoCapitalize="none"
                     autoCorrect={false}
-                    iconName="lock"
+                    iconName="lock-open"
                     textContentType="password"
                     secureTextEntry
                     fieldName="password"
                 />
-                <AppSubmitButton title="LOGIN" />
+                <AppFormField
+                    placeholder="Confirm Password"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    iconName="lock"
+                    textContentType="password"
+                    secureTextEntry
+                    fieldName="confirmPassword"
+                />
+                <AppSubmitButton title="REGISTER" />
             </AppFormik>
         </SafeAreaView>
     );
