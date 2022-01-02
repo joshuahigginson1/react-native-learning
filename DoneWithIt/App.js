@@ -13,25 +13,31 @@ import MyAccount from "./app/screens/myAccount.js";
 import AppTextInput from "./app/components/appTextInput.js";
 import AppPicker from "./app/components/appPicker.js";
 import { useState } from "react";
-
-const categories = [
-    { label: "Furniture", id: 1 },
-    { label: "Clothing", id: 2 },
-    { label: "Cameras", id: 3 },
-];
+import LoginScreen from "./app/screens/loginScreen.js";
 
 export default function App() {
-    const [category, setCategory] = useState(categories[0]);
-    return (
-        <AppPicker
-            iconName="apps"
-            placeholder="Email"
-            selectedItem={category}
-            onSelectItem={(item) => setCategory(item)}
-            categories={categories}
-        ></AppPicker>
-    );
+    return <LoginScreen></LoginScreen>;
 }
+
+// const categories = [
+//     { label: "Furniture", id: 1 },
+//     { label: "Clothing", id: 2 },
+//     { label: "Cameras", id: 3 },
+// ];
+
+// export default function App() {
+//     const [category, setCategory] = useState(categories[0]);
+//     return (
+//         <AppPicker
+//             iconName="apps"
+//             placeholder="Email"
+//             selectedItem={category}
+//             onSelectItem={(item) => setCategory(item)}
+//             categories={categories}
+//         ></AppPicker>
+//     );
+// }
+
 const styles = StyleSheet.create({
     component: {
         flex: 1,

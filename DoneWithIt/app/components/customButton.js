@@ -32,6 +32,7 @@ const handleStyles = (buttonColour = colours.white) =>
             justifyContent: "center",
             alignItems: "center",
             borderRadius: useDimensions().window.width / 50,
+            marginTop: 10,
         },
     });
 
