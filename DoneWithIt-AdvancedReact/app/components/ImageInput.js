@@ -40,7 +40,6 @@ function ImageInput({ size = 100, imageUri, onChangeImage }) {
 
             // Notify the consumer of the component that our image has changed and pass it the uri.
             if (!result.cancelled) onChangeImage(result.uri);
-            console.log(result.uri);
         } catch (error) {
             console.log("Error when reading image:", error);
         }
