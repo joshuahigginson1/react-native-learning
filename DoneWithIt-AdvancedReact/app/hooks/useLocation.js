@@ -15,11 +15,18 @@ const useLocation = () => {
             if (!granted) return;
             // Check if we have lastKnownPosition.
             const lastKnown = await Location.getLastKnownPositionAsync();
-            if (lastKnown) setLocation(lastKnown);
+            if (lastKnown)
+                setLocation({
+                    latitude: lastKnown.coords.latitude,
+                    longitude: lastKnown.coords.longitude,
+                });
             // If not, we get the current position.
             else {
                 const current = await Location.getCurrentPositionAsync();
-                setLocation(current);
+                setLocation({
+                    latitude: current.coords.latitude,
+                    longitude: current.coords.longitude,
+                });
             }
         } catch (error) {
             console.log(error);
