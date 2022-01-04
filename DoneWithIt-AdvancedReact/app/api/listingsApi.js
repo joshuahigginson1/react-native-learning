@@ -1,11 +1,10 @@
 // Local Imports
 import apiClient from "./client.js";
-
 const endpoint = "/listings";
 
 const getListings = () => apiClient.get(endpoint);
 
-const postListing = (values) => {
+const postListing = (values, onUploadProgress) => {
     const formData = new FormData();
     formData.append("title", values.title);
     formData.append("price", values.price);
@@ -20,6 +19,9 @@ const postListing = (values) => {
     });
     if (values.location)
         formData.append("location", JSON.stringify(values.location));
-    return apiClient.post(endpoint, formData);
+    return apiClient.post(endpoint, formData, {
+        onUploadProgress: (progress) =>
+            onUploadProgress(progress.loaded / progress.total),
+    });
 };
 export default { getListings, postListing };
