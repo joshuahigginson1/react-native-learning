@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Text, Button } from "react-native";
+import React from "react";
 
-import AuthNavigation from "./app/navigation/AuthNavigation";
 import AppTabNavigation from "./app/navigation/AppTabNavigation";
+import OfflineNotice from "./app/components/OfflineNotice";
 
 export default function App() {
-    return <AppTabNavigation />;
+    return (
+        <>
+            <OfflineNotice />
+            <AppTabNavigation />
+        </>
+    );
 }
