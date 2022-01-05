@@ -85,7 +85,7 @@ function ListingEditScreen() {
     const [uploadScreenVisible, setUploadScreenVisible] = useState(false);
     const [uploadProgress, setUploadProgress] = useState(0);
 
-    const handleSubmit = async (listing) => {
+    const handleSubmit = async (listing, FormikBag) => {
         setUploadProgress(0);
         setUploadScreenVisible(true);
         const result = await listingsApi.postListing(
@@ -96,6 +96,7 @@ function ListingEditScreen() {
             setUploadScreenVisible(false);
             return alert("Could not save the listing.");
         }
+        FormikBag.resetForm();
     };
 
     return (
