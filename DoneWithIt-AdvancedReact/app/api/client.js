@@ -2,6 +2,7 @@
 
 import { create } from "apisauce";
 import cache from "../utility/cache";
+import authStorage from "../auth/authStorage";
 
 const apiClient = create({
     baseURL: "http://192.168.1.171:9000/api",
@@ -12,6 +13,12 @@ const get = apiClient.get;
 apiClient.get = async (url, params, axiosConfig) => {
     // Call original function.
     const response = await get(url, params, axiosConfig);
+
+    apiClient.addAsyncRequestTransform(async (request) => {
+        const authToken = await authStorage.getToken();
+        if (!authToken) return;
+        request.headers["x-auth-token"] = authToken;
+    });
 
     // If successful response, store data in our AsyncCache.
     if (response.ok) {

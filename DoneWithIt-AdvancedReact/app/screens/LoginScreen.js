@@ -26,7 +26,6 @@ function LoginScreen() {
         const result = await auth.login(email, password);
         if (!result.ok) return setLoginFailed(true);
         setLoginFailed(false);
-        authContext.login(result.data);
     };
 
     return (

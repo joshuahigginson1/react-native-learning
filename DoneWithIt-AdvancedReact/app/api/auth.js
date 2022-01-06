@@ -1,8 +1,10 @@
 import apiClient from "./client";
 
-const authEndpoint = "/auth";
+const loginEndpoint = "/auth";
+const registerEndpoint = "/users";
 
 const login = (email, password) =>
-    apiClient.post(authEndpoint, { email, password });
+    apiClient.post(loginEndpoint, { email, password });
 
-export default { login };
+const register = (userInfo) => apiClient.post(registerEndpoint, userInfo);
+export default { login, register };
