@@ -1,8 +1,13 @@
 // Third Party Imports
+import React, { useEffect } from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+import * as Notifications from "expo-notifications";
+import * as Permissions from "expo-permissions";
+
 // Local Imports
 import ListingsNavigation from "./ListingsNavigation";
 import AccountNavigation from "./AccountNavigation";
@@ -10,52 +15,77 @@ import ListingEditScreen from "../screens/ListingEditScreen";
 import NavigationTheme from "./NavigationTheme";
 import NewListingButton from "./NewListingButton";
 import routes from "./routes";
+import expoPushTokens from "../api/expoPushTokens";
 
 const Tab = createBottomTabNavigator();
-const TabNavigator = () => (
-    <Tab.Navigator
-        initialRouteName="Listings"
-        screenOptions={{ headerShown: false }}
-    >
-        <Tab.Screen
-            name="Listings"
-            component={ListingsNavigation}
-            options={{
-                tabBarIcon: ({ size, color }) => (
-                    <MaterialCommunityIcons
-                        name="home"
-                        size={size}
-                        color={color}
-                    />
-                ),
-            }}
-        />
-        <Tab.Screen
-            name={routes.LISTING_EDIT}
-            component={ListingEditScreen}
-            options={({ navigation }) => ({
-                tabBarButton: () => (
-                    <NewListingButton
-                        onPress={() => navigation.navigate(routes.LISTING_EDIT)}
-                    />
-                ),
-            })}
-        />
-        <Tab.Screen
-            name="Account"
-            component={AccountNavigation}
-            options={{
-                tabBarIcon: ({ size, color }) => (
-                    <MaterialCommunityIcons
-                        name="account"
-                        size={size}
-                        color={color}
-                    />
-                ),
-            }}
-        />
-    </Tab.Navigator>
-);
+
+const TabNavigator = () => {
+    const registerForPushNotifications = async () => {
+        try {
+            const permission = await Notifications.requestPermissionsAsync();
+            if (!permission.granted) return;
+            const pushTokenObject = await Notifications.getExpoPushTokenAsync();
+            const test = await expoPushTokens.registerPushToken(
+                pushTokenObject.data
+            );
+        } catch (error) {
+            console.log("Error getting a push token:", error);
+        }
+    };
+
+    Notifications.addNotificationResponseReceivedListener((notification) =>
+        console.log(notification)
+    );
+
+    useEffect(() => registerForPushNotifications(), []);
+
+    return (
+        <Tab.Navigator
+            initialRouteName="Listings"
+            screenOptions={{ headerShown: false }}
+        >
+            <Tab.Screen
+                name="Listings"
+                component={ListingsNavigation}
+                options={{
+                    tabBarIcon: ({ size, color }) => (
+                        <MaterialCommunityIcons
+                            name="home"
+                            size={size}
+                            color={color}
+                        />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name={routes.LISTING_EDIT}
+                component={ListingEditScreen}
+                options={({ navigation }) => ({
+                    tabBarButton: () => (
+                        <NewListingButton
+                            onPress={() =>
+                                navigation.navigate(routes.LISTING_EDIT)
+                            }
+                        />
+                    ),
+                })}
+            />
+            <Tab.Screen
+                name="Account"
+                component={AccountNavigation}
+                options={{
+                    tabBarIcon: ({ size, color }) => (
+                        <MaterialCommunityIcons
+                            name="account"
+                            size={size}
+                            color={color}
+                        />
+                    ),
+                }}
+            />
+        </Tab.Navigator>
+    );
+};
 
 function AppTabNavigation() {
     return (

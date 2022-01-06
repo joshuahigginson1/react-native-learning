@@ -31,7 +31,6 @@ function RegisterScreen() {
 
     const handleSubmit = async (userInfo) => {
         const registerResponse = await registerApi.request(userInfo);
-        console.log(registerResponse.ok);
         if (!registerResponse.ok) return setRegisterFailed(true);
         setRegisterFailed(false);
 
