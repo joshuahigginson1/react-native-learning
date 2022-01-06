@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import jwtDecode from "jwt-decode";
+import React, { useState } from "react";
+
+import AppLoading from "expo-app-loading";
 
 import AppTabNavigation from "./app/navigation/AppTabNavigation";
 import AuthNavigation from "./app/navigation/AuthNavigation";
@@ -10,16 +11,21 @@ import authStorage from "./app/auth/authStorage";
 
 export default function App() {
     const [user, setUser] = useState();
+    const [appIsReady, setAppIsReady] = useState(false);
 
-    const restoreToken = async () => {
-        const token = await authStorage.getToken();
-        if (!token) return;
-        setUser(jwtDecode(token));
+    const restoreUser = async () => {
+        const user = await authStorage.getUser();
+        if (user) setUser(user);
     };
 
-    useEffect(() => {
-        restoreToken();
-    }, []);
+    if (!appIsReady)
+        return (
+            <AppLoading
+                startAsync={restoreUser}
+                onFinish={() => setAppIsReady(true)}
+                onError={(error) => console.log(error)}
+            />
+        );
 
     return (
         <AuthContext.Provider value={{ user, setUser }}>
