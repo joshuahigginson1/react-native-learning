@@ -25,30 +25,34 @@ function ListingsScreen(props) {
     }, []);
 
     return (
-        <Screen style={styles.screen}>
-            {connectError && (
-                <>
-                    <AppText>Couldn't retrieve listings from server.</AppText>
-                    <Button onPress={loadListings} title="Retry"></Button>
-                </>
-            )}
+        <>
             <ActivityIndicator visible={loading} />
-            <FlatList
-                data={listings}
-                keyExtractor={(listing) => listing.id.toString()}
-                renderItem={({ item }) => (
-                    <Card
-                        title={item.title}
-                        subTitle={"£" + item.price}
-                        imageUrl={item.images[0].url}
-                        thumbnailUrl={item.images[0].thumbnailUrl}
-                        onPress={() =>
-                            navigation.navigate("ListingDetails", item)
-                        }
-                    />
+            <Screen style={styles.screen}>
+                {connectError && (
+                    <>
+                        <AppText>
+                            Couldn't retrieve listings from server.
+                        </AppText>
+                        <Button onPress={loadListings} title="Retry"></Button>
+                    </>
                 )}
-            />
-        </Screen>
+                <FlatList
+                    data={listings}
+                    keyExtractor={(listing) => listing.id.toString()}
+                    renderItem={({ item }) => (
+                        <Card
+                            title={item.title}
+                            subTitle={"£" + item.price}
+                            imageUrl={item.images[0].url}
+                            thumbnailUrl={item.images[0].thumbnailUrl}
+                            onPress={() =>
+                                navigation.navigate("ListingDetails", item)
+                            }
+                        />
+                    )}
+                />
+            </Screen>
+        </>
     );
 }
 

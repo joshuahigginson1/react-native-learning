@@ -11,6 +11,8 @@ import {
 } from "../components/forms";
 import useAuth from "../auth/useAuth";
 import auth from "../api/auth";
+import useApi from "../hooks/useApi";
+import ActivityIndicator from "../components/ActivityIndicator";
 
 const validationSchema = Yup.object().shape({
     name: Yup.string().required().label("Name"),
@@ -24,63 +26,74 @@ function RegisterScreen() {
 
     const authContext = useAuth();
 
+    const registerApi = useApi(auth.register);
+    const loginApi = useApi(auth.login);
+
     const handleSubmit = async (userInfo) => {
-        const registerResponse = await auth.register(userInfo);
+        const registerResponse = await registerApi.request(userInfo);
+        console.log(registerResponse.ok);
         if (!registerResponse.ok) return setRegisterFailed(true);
         setRegisterFailed(false);
-        const loginResponse = await auth.login(
+
+        const loginResponse = await loginApi.request(
             userInfo.email,
             userInfo.password
         );
         if (!loginResponse.ok) return setLoginFailed(true);
         setLoginFailed(false);
+
         authContext.login(loginResponse.data);
     };
 
     return (
-        <Screen style={styles.container}>
-            <Form
-                initialValues={{ name: "", email: "", password: "" }}
-                onSubmit={(credentials) => handleSubmit(credentials)}
-                validationSchema={validationSchema}
-            >
-                <FormField
-                    autoCorrect={false}
-                    icon="account"
-                    name="name"
-                    placeholder="Name"
-                />
-                <FormField
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    icon="email"
-                    keyboardType="email-address"
-                    name="email"
-                    placeholder="Email"
-                    textContentType="emailAddress"
-                />
-                <FormField
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    icon="lock"
-                    name="password"
-                    placeholder="Password"
-                    secureTextEntry
-                    textContentType="password"
-                />
-                <View style={styles.error}>
-                    <ErrorMessage
-                        error="A user with this email already exists!"
-                        visible={registerFailed}
+        <>
+            <ActivityIndicator
+                visible={registerApi.loading || loginApi.loading}
+            />
+            <Screen style={styles.container}>
+                <Form
+                    initialValues={{ name: "", email: "", password: "" }}
+                    onSubmit={(credentials) => handleSubmit(credentials)}
+                    validationSchema={validationSchema}
+                >
+                    <FormField
+                        autoCorrect={false}
+                        icon="account"
+                        name="name"
+                        placeholder="Name"
                     />
-                    <ErrorMessage
-                        error="Apologies, we are currently having trouble logging you in."
-                        visible={loginFailed}
+                    <FormField
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        icon="email"
+                        keyboardType="email-address"
+                        name="email"
+                        placeholder="Email"
+                        textContentType="emailAddress"
                     />
-                </View>
-                <SubmitButton title="Register" />
-            </Form>
-        </Screen>
+                    <FormField
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        icon="lock"
+                        name="password"
+                        placeholder="Password"
+                        secureTextEntry
+                        textContentType="password"
+                    />
+                    <View style={styles.error}>
+                        <ErrorMessage
+                            error="A user with this email already exists!"
+                            visible={registerFailed}
+                        />
+                        <ErrorMessage
+                            error="Apologies, we are currently having trouble logging you in."
+                            visible={loginFailed}
+                        />
+                    </View>
+                    <SubmitButton title="Register" />
+                </Form>
+            </Screen>
+        </>
     );
 }
 
