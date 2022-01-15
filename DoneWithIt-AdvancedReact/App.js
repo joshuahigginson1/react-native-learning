@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Error } from "react-native";
 import AppLoading from "expo-app-loading";
 
 import AppTabNavigation from "./app/navigation/AppTabNavigation";
@@ -7,6 +8,10 @@ import OfflineNotice from "./app/components/OfflineNotice";
 
 import AuthContext from "./app/auth/AuthContext";
 import authStorage from "./app/auth/authStorage";
+import logger from "./app/utility/logger";
+
+// Initialise logger.
+logger.init();
 
 export default function App() {
     const [user, setUser] = useState();
@@ -22,7 +27,7 @@ export default function App() {
             <AppLoading
                 startAsync={restoreUser}
                 onFinish={() => setAppIsReady(true)}
-                onError={(error) => console.log(error)}
+                onError={(error) => logger.logException(error)}
             />
         );
 

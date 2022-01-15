@@ -21,6 +21,18 @@
         "description": "A marketplace for selling the stuff you don't need anymore.",
         "notification": {
             "iosDisplayInForeground": true
+        },
+        "plugins": ["sentry-expo"],
+        "hooks": {
+            "postPublish": [
+                {
+                    "file": "sentry-expo/upload-sourcemaps",
+                    "config": {
+                        "organization": "joshhigginson",
+                        "project": "donewithit"
+                    }
+                }
+            ]
         }
     }
 }

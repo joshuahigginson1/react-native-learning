@@ -7,6 +7,7 @@ import colors from "../config/colors";
 import Icon from "../components/Icon";
 import Screen from "../components/Screen";
 import useAuth from "../auth/useAuth";
+import logger from "../utility/logger";
 
 const menuItems = [
     {
@@ -29,6 +30,8 @@ const menuItems = [
 function AccountScreen(props) {
     const navigation = useNavigation();
     const { user, setUser, handleLogOut } = useAuth();
+
+    logger.logMessage("Hello this is a test!");
 
     return (
         <Screen style={styles.screen}>
