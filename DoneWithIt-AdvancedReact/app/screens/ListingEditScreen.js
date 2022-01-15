@@ -99,8 +99,6 @@ function ListingEditScreen() {
         FormikBag.resetForm();
     };
 
-    throw new Error("Yikes!");
-
     return (
         <Screen style={styles.container}>
             <UploadScreen
