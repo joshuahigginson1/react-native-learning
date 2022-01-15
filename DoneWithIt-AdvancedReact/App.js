@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import AppLoading from "expo-app-loading";
 
 import AppTabNavigation from "./app/navigation/AppTabNavigation";

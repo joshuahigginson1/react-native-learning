@@ -11,6 +11,7 @@ import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import NavigationTheme from "./NavigationTheme";
 import routes from "./routes";
+import { navigationRef } from "./rootNavigation";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,7 +29,7 @@ const AuthNavigator = () => (
 
 function AuthNavigation() {
     return (
-        <NavigationContainer theme={NavigationTheme}>
+        <NavigationContainer ref={navigationRef} theme={NavigationTheme}>
             <AuthNavigator />
         </NavigationContainer>
     );

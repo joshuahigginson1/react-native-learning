@@ -1,12 +1,9 @@
 // Third Party Imports
-import React, { useEffect } from "react";
+import React from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
-import * as Notifications from "expo-notifications";
-import * as Permissions from "expo-permissions";
 
 // Local Imports
 import ListingsNavigation from "./ListingsNavigation";
@@ -15,29 +12,16 @@ import ListingEditScreen from "../screens/ListingEditScreen";
 import NavigationTheme from "./NavigationTheme";
 import NewListingButton from "./NewListingButton";
 import routes from "./routes";
-import expoPushTokens from "../api/expoPushTokens";
+
+import navigation, { navigationRef } from "./rootNavigation";
+import useNotifications from "../hooks/useNotifications";
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
-    const registerForPushNotifications = async () => {
-        try {
-            const permission = await Notifications.requestPermissionsAsync();
-            if (!permission.granted) return;
-            const pushTokenObject = await Notifications.getExpoPushTokenAsync();
-            const test = await expoPushTokens.registerPushToken(
-                pushTokenObject.data
-            );
-        } catch (error) {
-            console.log("Error getting a push token:", error);
-        }
-    };
-
-    Notifications.addNotificationResponseReceivedListener((notification) =>
-        console.log(notification)
-    );
-
-    useEffect(() => registerForPushNotifications(), []);
+    useNotifications(() => {
+        navigation.navigate(routes.LISTING_EDIT);
+    });
 
     return (
         <Tab.Navigator
@@ -89,7 +73,7 @@ const TabNavigator = () => {
 
 function AppTabNavigation() {
     return (
-        <NavigationContainer theme={NavigationTheme}>
+        <NavigationContainer ref={navigationRef} theme={NavigationTheme}>
             <TabNavigator />
         </NavigationContainer>
     );
